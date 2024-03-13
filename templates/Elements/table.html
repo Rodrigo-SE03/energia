@@ -1,0 +1,22 @@
+{% block body %}
+<div class = 'mb-5 border p-4 table-responsive'>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            {% for header in dados_dict.keys() %}
+                <th scope="col">{{ header }}</th>
+            {% endfor %}
+        </tr>
+        </thead>
+        <tbody>
+            {% for i in range(0,length) %}
+                <tr>
+                {% for key in dados_dict.keys() %}
+                    <td>{{ dados_dict[key][i] }}</td>
+                {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

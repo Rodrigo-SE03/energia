@@ -1,0 +1,204 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+<div class = 'border p-5'>
+    <form method="POST">
+        {{ form_vazamentos.csrf_token }}
+        <legend>Ar Comprimido</legend>
+        <fieldset>
+            <div class = "row mt-4">
+                <div class = "col">
+                    <div class="form-group">
+                        {{ form_vazamentos.empresa.label(class = 'form-control-label') }}
+                        {{ form_vazamentos.empresa(class = 'form-control') }}
+                    </div>
+                </div>
+                
+                <div class = "col">
+                    <div class="form-group">
+                        {{ form_vazamentos.cnpj.label(class = 'form-control-label') }}
+
+                        {% if form_vazamentos.cnpj.errors %}
+                            {{ form_vazamentos.cnpj(class = 'form-control is-invalid') }}
+                            <div class = 'invalid-feedback'>
+                                {% for erro in form_vazamentos.fp.errors %}
+                                    {% if erro == 'This field is required.' %}
+                                        {{ 'Use "." ao invés de ","' }}
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form_vazamentos.cnpj(class = 'form-control') }}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class = "row mt-4">
+                <div class = "col">
+                    <div class="form-group">
+                        {{ form_vazamentos.endereco.label(class = 'form-control-label') }}
+                        {{ form_vazamentos.endereco(class = 'form-control') }}
+                    </div>
+                </div>
+            </div>
+
+
+            <div class = "row mt-4">
+                <div class = "col">
+                    <div class="form-group">
+                        {{ form_vazamentos.contato_nome.label(class = 'form-control-label') }}
+
+                        {% if form_vazamentos.contato_nome.errors %}
+                            {{ form_vazamentos.contato_nome(class = 'form-control is-invalid') }}
+                            <div class = 'invalid-feedback'>
+                                {% for erro in form_vazamentos.contato_nome.errors %}
+                                    {{ erro }}
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form_vazamentos.contato_nome(class = 'form-control') }}
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class = "col">
+                    <div class="form-group">
+                        {{ form_vazamentos.contato_depto.label(class = 'form-control-label') }}
+
+                        {% if form_vazamentos.contato_depto.errors %}
+                            {{ form_vazamentos.contato_depto(class = 'form-control is-invalid') }}
+                            <div class = 'invalid-feedback'>
+                                {% for erro in form_vazamentos.contato_depto.errors %}
+                                    {% if erro == 'This field is required.' %}
+                                        {{ 'Use "." ao invés de ","' }}
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form_vazamentos.contato_depto(class = 'form-control') }}
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class = "col">
+                    <div class="form-group">
+                        {{ form_vazamentos.contato_email.label(class = 'form-control-label') }}
+                        {{ form_vazamentos.contato_email(class = 'form-control') }}
+                    </div>
+                </div>
+            </div>
+
+
+            <div class = "row mt-4">
+                <div class = "col">
+                    <div class="form-group">
+                        {{ form_vazamentos.contato_fone.label(class = 'form-control-label') }}
+                        {{ form_vazamentos.contato_fone(class = 'form-control') }}
+                    </div>
+                </div>
+
+                <div class = "col">
+                    <div class="form-group">
+                        {{ form_vazamentos.rt.label(class = 'form-control-label') }}
+                        {{ form_vazamentos.rt(class = 'form-control') }}
+                    </div>
+                </div>
+            </div>
+
+            <div class = "row mt-4">
+                <div class = "col">
+                    <div class="form-group">
+                        Equipe Técnica
+                        <div class = "row align-items-center">
+                            <div class = "col">Membro 1</div>
+                            <div class = "col col-sm-10">
+                                {{ form_vazamentos.e1(class = 'form-control') }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class = "col">
+                    <div class="form-group">
+                        <p1><br></p1>
+                        <div class = "row align-items-center">
+                            <div class = "col">Membro 2</div>
+                            <div class = "col col-sm-10">
+                                {{ form_vazamentos.e2(class = 'form-control') }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class = "col">
+                    <div class="form-group">
+                        <p1><br></p1>
+                        <div class = "row align-items-center">
+                            <div class = "col">Membro 3</div>
+                            <div class = "col col-sm-10">
+                                {{ form_vazamentos.e3(class = 'form-control') }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class = "col">
+                    <div class="form-group">
+                        <p1><br></p1>
+                        <div class = "row align-items-center">
+                            <div class = "col">Membro 4</div>
+                            <div class = "col col-sm-10">
+                                {{ form_vazamentos.e4(class = 'form-control') }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class = "row mt-4">
+                <div class = "col">
+                    <div class="form-group">
+                        {{ form_vazamentos.setores.label(class = 'form-control-label') }}
+                        {{ form_vazamentos.setores(class = 'form-control') }}
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        {{ form_vazamentos.add_button(class = 'btn btn-primary mt-5') }}
+    </form>
+</div>
+
+
+    <div class = 'pt-4 pb-5'>
+        <legend>Pontos de Fuga Registrados</legend>
+        <form method="POST" enctype = "multipart/form-data" >
+            <div class="input-group">
+                <input class="form-control" id="inputGroupFile02" style="visibility: visible;" type=file name=file>
+                <input class="btn btn-warning" for="inputGroupFile02" type="submit" value="Carregar" name="load_btn">
+            </div>
+        </form>
+    </div>
+
+    {% if flag_ready == True %}
+    <form method="POST" class="mb-5">
+        <fieldset>
+                <div class = 'row'>
+                        <div class="col">
+                                <div class="form-group">
+                                        {{ form_salvar.nome.label(class = 'form-control-label') }}
+                                        {{ form_salvar.nome(class = 'form-control') }}
+                                </div>
+                        </div>
+                        <div class="col">
+                                <div class="form-group">
+                                        <div><br></div>
+                                        {{ form_salvar.salvar_btn(class = 'btn btn-success') }}
+                                </div>
+                        </div>
+                </div>
+        </fieldset>
+    </form>
+    {% endif %}
+
+{% endblock %}

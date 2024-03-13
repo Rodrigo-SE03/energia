@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+
+    <div>
+        <legend>Eficiência Energética</legend>
+    </div>
+    <div class = 'pt-2 pb-5'>
+        <form method="POST" enctype = "multipart/form-data" >
+            <div class="input-group">
+                <input class="form-control" id="inputGroupFile02" style="visibility: visible;" type=file name=file>
+                <input class="btn btn-warning" for="inputGroupFile02" type="submit" value="Carregar" name="load_btn">
+            </div>
+        </form>
+    </div>
+
+    {% if flag_ready == True %}
+    <form method="POST" class="mb-5">
+        <fieldset>
+                <div class = 'row'>
+                        <div class="col">
+                                <div class="form-group">
+                                        {{ form_salvar.nome.label(class = 'form-control-label') }}
+                                        {{ form_salvar.nome(class = 'form-control') }}
+                                </div>
+                        </div>
+                        <div class="col">
+                                <div class="form-group">
+                                        <div><br></div>
+                                        {{ form_salvar.salvar_btn(class = 'btn btn-success') }}
+                                </div>
+                        </div>
+                </div>
+        </fieldset>
+    </form>
+    {% endif %}
+
+{% endblock %}
