@@ -1,0 +1,4 @@
+-Como funciona para selecionar os dados que o analisador vai ler;
+-Na medida ex ante e ex post, devem sempre ser usados os mesmos analisadores? Exemplo: ex ante no QE geral - Minipa; ex post no QE geral - Minipa; 
+-Na medida ex ante e ex post, devem ser usados os mesmo intervalos entre medidas? Exemplo: ex ante no QE geral - 1 min; ex post no QE geral - 1 min;
+-Quais são as informações que devem ser apresentadas na análise das medições dos analisadores?

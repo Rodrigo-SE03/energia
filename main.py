@@ -120,7 +120,7 @@ def eficiencia():
             results_dict = f_eficiencia.tratar_dados_eficiencia.calculos(dados_dict=dados_dict)
             flag_ready = True
             flash('Dados carregados com sucesso',category='alert-success')
-            return app.redirect(url_for('qualidade'))
+            return app.redirect(url_for('eficiencia'))
     #--------------------------------------------------------------------------------------------------------
         
     #Procedimento para salvar a planilha com as análises
