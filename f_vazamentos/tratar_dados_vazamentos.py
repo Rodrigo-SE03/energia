@@ -66,7 +66,7 @@ def relatorio(file,folder,dados_empresa):
             new_img.save(f'{folder}/Fotos/{file}')
             os.remove(f'{folder}/{file}')
 
-    df = pd.read_excel(open(f'{folder}/Vazamentos.xlsx','rb'))
+    df = pd.read_excel(f'{folder}/Vazamentos.xlsx')
     document = doc
     qtd_total = 0
     qtd_pequeno = 0

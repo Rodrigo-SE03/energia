@@ -1,7 +1,7 @@
 from flask import Flask, render_template, url_for, request, flash, send_from_directory
 from forms import FormSalvar,FormInfoVazamentos
 from werkzeug.utils import secure_filename
-import os
+import os,shutil
 import f_qualidade.tratar_dados_qualidade,f_qualidade.planilha_qualidade
 import f_eficiencia.tratar_dados_eficiencia,f_eficiencia.planilha_eficiencia
 import f_vazamentos.tratar_dados_vazamentos
@@ -43,7 +43,10 @@ def allowed_file(filename):
 def limpar_pasta(folder):
     for file in os.listdir(folder):
         if 'modelo' not in file:
-            os.remove(f'{folder}/{file}')
+            try:
+                os.remove(f'{folder}/{file}')
+            except:
+                shutil.rmtree(f'{folder}/{file}')
 #--------------------------------------------------------------------------------------------------------
 
 
@@ -56,6 +59,8 @@ def qualidade():
     global nome_arquivo
     global flag_atividade
     form_salvar = FormSalvar()
+
+    limpar_pasta(folder=os.path.join(app.root_path,UPLOAD_FOLDER))
 
     #Procedimento para carregar arquivo
     if request.method == 'POST' and 'load_btn' in request.form:     
@@ -99,7 +104,10 @@ def qualidade():
 def eficiencia():
     global nome_arquivo
     global flag_ready
+    global results_dict
     form_salvar = FormSalvar()
+
+    limpar_pasta(folder=os.path.join(app.root_path,UPLOAD_FOLDER))
 
     #Procedimento para carregar arquivo
     if request.method == 'POST' and 'load_btn' in request.form:     
@@ -143,8 +151,11 @@ def vazamentos():
     global nome_arquivo
     global flag_ready
     global dados_empresa
+    global flag_atividade
     form_salvar = FormSalvar()
     form_vazamentos = FormInfoVazamentos()
+
+    limpar_pasta(folder=os.path.join(app.root_path,UPLOAD_FOLDER))
 
     if form_vazamentos.validate_on_submit() and 'add_button' in request.form:
         f_vazamentos.tratar_dados_vazamentos.tratar_dados(dados_empresa=dados_empresa,form_vazamentos=form_vazamentos)
@@ -169,21 +180,11 @@ def vazamentos():
             f_vazamentos.tratar_dados_vazamentos.unzip(file=file,folder=os.path.join(app.root_path,UPLOAD_FOLDER))
             f_vazamentos.tratar_dados_vazamentos.relatorio(file=file.filename,folder=os.path.join(app.root_path,UPLOAD_FOLDER),dados_empresa=dados_empresa)
             flag_ready = True
+            nome_arquivo = f'{file.filename.split('.')[0]}/tabelas'
             flash('Dados carregados com sucesso',category='alert-success')
-            return app.redirect(url_for('vazamentos'))
-    #--------------------------------------------------------------------------------------------------------
-        
-    #Procedimento para salvar a planilha com as análises
-    if 'salvar_btn' in request.form:            
-        msg = f_eficiencia.tratar_dados_eficiencia.verificar_save(dados_dict=dados_dict)
-        if msg != 'Arquivo salvo com sucesso': 
-            flash(msg,category='alert-danger')
-        else:
-            limpar_pasta(folder=os.path.join(app.root_path,UPLOAD_FOLDER))
             flag_atividade = 'Vazamentos'
-            nome_arquivo = form_salvar.nome.data
+            print(nome_arquivo)
             return app.redirect(url_for("download"))
-        return app.redirect(url_for("vazamentos"))
     #--------------------------------------------------------------------------------------------------------
         
     return render_template('vazamentos.html',form_vazamentos=form_vazamentos)
@@ -200,6 +201,8 @@ def download():
         f_qualidade.planilha_qualidade.criar_planilha(dados_dict=dados_dict,results_dict=results_dict,folder=os.path.join(app.root_path,UPLOAD_FOLDER),nome=nome)
     elif flag_atividade == 'Eficiencia':
         f_eficiencia.planilha_eficiencia.criar_planilha(dados_dict=dados_dict,results_dict=results_dict,folder=os.path.join(app.root_path,UPLOAD_FOLDER),nome=nome)
+    elif flag_atividade == 'Vazamentos':
+        nome = f'{nome_arquivo}.docx'
     uploads = os.path.join(app.root_path, app.config['UPLOAD_FOLDER'])
     return send_from_directory(directory=uploads, path=nome)
 #--------------------------------------------------------------------------------------------------------

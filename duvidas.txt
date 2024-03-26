@@ -1,4 +1,10 @@
 -Como funciona para selecionar os dados que o analisador vai ler;
--Na medida ex ante e ex post, devem sempre ser usados os mesmos analisadores? Exemplo: ex ante no QE geral - Minipa; ex post no QE geral - Minipa; 
--Na medida ex ante e ex post, devem ser usados os mesmo intervalos entre medidas? Exemplo: ex ante no QE geral - 1 min; ex post no QE geral - 1 min;
+-Na medida ex ante e ex post, devem sempre ser usados os mesmos analisadores? Exemplo: ex ante no QE geral - Minipa; ex post no QE geral - Minipa; Geralmente Sim!
+-Na medida ex ante e ex post, devem ser usados os mesmo intervalos entre medidas? Exemplo: ex ante no QE geral - 1 min; ex post no QE geral - 1 min; Geralmente Sim!
 -Quais são as informações que devem ser apresentadas na análise das medições dos analisadores?
+
+
+
+-Tenho que repensar algumas coisas. O Haroldo falou que em poucos casos vamos fazer a medição ex-post. Desse modo, preciso de outra maneira de fazer a estimativa da
+economia. Sem dúvidas ainda vão ser inseridas as medições ex-ante. Com elas eu posso criar aquele gráfico de consumo, igual tem na Albaplast e na Rancheiro.A partir 
+daí eu vou precisar de uma orientação a mais.

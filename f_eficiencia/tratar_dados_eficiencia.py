@@ -7,7 +7,7 @@ import copy
 #Função para carregar a planilha pré construída com dados de cargas
 def carregar_dados(file,folder): 
     df_exante = pd.read_excel(f'{folder}/{file}',sheet_name=0)
-    df_expost = pd.read_excel(f'{folder}/{file}',sheet_name=0)
+    df_expost = pd.read_excel(f'{folder}/{file}',sheet_name=1)
     os.remove(f'{os.getcwd()}/{folder}/{file}')
     dados_dict_ante = {}
     dados_dict_post = {}
@@ -22,14 +22,14 @@ def carregar_dados(file,folder):
 def calculos(dados_dict):
     consumo_ante = calc_consumo(dados_dict=dados_dict[0])
     consumo_post = calc_consumo(dados_dict=dados_dict[1])
-    print('here')
     results_dict = {
-        'Data': dados_dict['Data'],
-        'Hora': dados_dict['Hora'],
-        'Consumo - Ex Ante': consumo_ante,
+        'Data': dados_dict[0]['Data'],
+        'Hora': dados_dict[0]['Hora'],
+        'Consumo': consumo_ante,
         'Consumo - Ex Post': consumo_post
     }
     return results_dict
+
 
 def calc_consumo(dados_dict): #Preciso testar se tá registrando corretamente os valores após o horário de ponta
     i=0
@@ -79,10 +79,11 @@ def calc_consumo(dados_dict): #Preciso testar se tá registrando corretamente os
                 fp = 0
                 reset = True
         i+=1
-
-    df = pd.DataFrame({'Data':dados_dict['Data'],'Hora':dados_dict['Hora'],'Energia_t':energia_t,'Energia_d':energia_d,'Energia_fp':energia_fp,'Energia_p':energia_p,})
-
+    dias = list(dict.fromkeys(dados_dict['Data']))
     valores_dict = {
+        'Data': dados_dict['Data'],
+        'Hora': dados_dict['Hora'],
+        'Dias': dias,
         'Potência': pot,
         'Energia Total': energia_t,
         'Energia - Dia': energia_d,
