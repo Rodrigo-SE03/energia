@@ -29,14 +29,16 @@ def tratar_dados(dados_empresa,form_vazamentos):
 
 #Função para descompactar o arquivo zip
 def unzip(file,folder):
+    os.mkdir(f'{folder}/{file.filename.split('.')[0]}')
     with zipfile.ZipFile(file, 'r') as zip_ref:
-        zip_ref.extractall(f'{folder}')
+        zip_ref.extractall(f'{folder}/{file.filename.split('.')[0]}')
     os.remove(f'{folder}/{file.filename}')
 #--------------------------------------------------------------------------------------------------------
 
 #Função para inserir os pontos de fuga registrados no modelo do relatório preliminar
 def relatorio(file,folder,dados_empresa):
     doc = Document(f'{folder}/vazamentos_modelo.docx')
+    size = 1300000
     
     last = []
     id = 0
@@ -56,6 +58,7 @@ def relatorio(file,folder,dados_empresa):
         id+=1
     
     folder = f'{folder}/{file.split('.')[0]}'
+    print(folder)
     files = os.listdir(folder)
     img_format = files[0].split('.')[1]
     os.mkdir(f'{folder}/Fotos')
@@ -127,7 +130,7 @@ def relatorio(file,folder,dados_empresa):
         photo_cell.text = ""
         paragraph = photo_cell.paragraphs[0]
         run = paragraph.add_run()
-        run.add_picture(pic,1300000)
+        run.add_picture(pic,width = 1800000, height = 1800000)
 
         i=0
         while i<6:
@@ -144,7 +147,7 @@ def relatorio(file,folder,dados_empresa):
 
 
         if cont == 2:
-            p.add_run("\n\n\n\n\n")
+            p.add_run("\n\n\n\n\n\n\n\n\n\n")
             cont = -1
         cont+=1
 
