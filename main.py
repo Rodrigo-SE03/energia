@@ -180,7 +180,7 @@ def vazamentos():
             f_vazamentos.tratar_dados_vazamentos.unzip(file=file,folder=os.path.join(app.root_path,UPLOAD_FOLDER))
             f_vazamentos.tratar_dados_vazamentos.relatorio(file=file.filename,folder=os.path.join(app.root_path,UPLOAD_FOLDER),dados_empresa=dados_empresa)
             flag_ready = True
-            nome_arquivo = f'{file.filename.split('.')[0]}/tabelas'
+            nome_arquivo = f'{file.filename.split(".")[0]}/tabelas'
             flash('Dados carregados com sucesso',category='alert-success')
             flag_atividade = 'Vazamentos'
             print(nome_arquivo)
