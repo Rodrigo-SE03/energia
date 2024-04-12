@@ -57,7 +57,7 @@ def relatorio(file,folder,dados_empresa):
             last.append(p)
         id+=1
     
-    folder = f'{folder}/{file.split('.')[0]}'
+    folder = f'{folder}/{file.split(".")[0]}'
     print(folder)
     files = os.listdir(folder)
     img_format = files[0].split('.')[1]
@@ -177,25 +177,25 @@ def relatorio(file,folder,dados_empresa):
                 run.font.size = Pt(14)
                 run.font.bold = True
         elif '[-CNPJ-]' in p.text:
-            p.text = p.text.replace('[-CNPJ-]',f'CNPJ: {dados_empresa['CNPJ']}')
+            p.text = p.text.replace('[-CNPJ-]',f'CNPJ: {dados_empresa["CNPJ"]}')
             p.alignment = WD_ALIGN_PARAGRAPH.RIGHT
             for run in p.runs:
                 run.font.name = 'Arial'
                 run.font.size = Pt(12)
         elif '[-ENDEREÇO 1-]' in p.text:
-            p.text = p.text.replace('[-ENDEREÇO 1-]',f'{dados_empresa['Endereço'].split(';')[0]}')
+            p.text = p.text.replace('[-ENDEREÇO 1-]',f'{dados_empresa["Endereço"].split(";")[0]}')
             p.alignment = WD_ALIGN_PARAGRAPH.RIGHT
             for run in p.runs:
                 run.font.name = 'Arial'
                 run.font.size = Pt(12)
         elif '[-ENDEREÇO 2-]' in p.text:
-            p.text = p.text.replace('[-ENDEREÇO 2-]',f'{dados_empresa['Endereço'].split(';')[1]}')
+            p.text = p.text.replace('[-ENDEREÇO 2-]',f'{dados_empresa["Endereço"].split(";")[1]}')
             p.alignment = WD_ALIGN_PARAGRAPH.RIGHT
             for run in p.runs:
                 run.font.name = 'Arial'
                 run.font.size = Pt(12)  
         elif '[-ENDEREÇO 3-]' in p.text:
-            p.text = p.text.replace('[-ENDEREÇO 3-]',f'{dados_empresa['Endereço'].split(';')[2]}')
+            p.text = p.text.replace('[-ENDEREÇO 3-]',f'{dados_empresa["Endereço"].split(";")[2]}')
             p.alignment = WD_ALIGN_PARAGRAPH.RIGHT
             for run in p.runs:
                 run.font.name = 'Arial'
@@ -208,49 +208,49 @@ def relatorio(file,folder,dados_empresa):
                 run.font.size = Pt(12) 
                 run.font.bold = True
         elif '[-DEPARTAMENTO-]' in p.text:
-            p.text = p.text.replace('[-DEPARTAMENTO-]',f'Departamento: {dados_empresa['Departamento']}')
+            p.text = p.text.replace('[-DEPARTAMENTO-]',f'Departamento: {dados_empresa["Departamento"]}')
             p.alignment = WD_ALIGN_PARAGRAPH.RIGHT
             for run in p.runs:
                 run.font.name = 'Arial'
                 run.font.size = Pt(12) 
         elif '[-EMAIL-]' in p.text:
-            p.text = p.text.replace('[-EMAIL-]',f'E-mail: {dados_empresa['E-mail']}')
+            p.text = p.text.replace('[-EMAIL-]',f'E-mail: {dados_empresa["E-mail"]}')
             p.alignment = WD_ALIGN_PARAGRAPH.RIGHT
             for run in p.runs:
                 run.font.name = 'Arial'
                 run.font.size = Pt(12)
         elif '[-TELEFONE-]' in p.text:
-            p.text = p.text.replace('[-TELEFONE-]',f'Telefone: {dados_empresa['Telefone']}')
+            p.text = p.text.replace('[-TELEFONE-]',f'Telefone: {dados_empresa["Telefone"]}')
             p.alignment = WD_ALIGN_PARAGRAPH.RIGHT
             for run in p.runs:
                 run.font.name = 'Arial'
                 run.font.size = Pt(12) 
         elif '[-RT-]' in p.text:
-            p.text = p.text.replace('[-RT-]',f'{dados_empresa['RT']}')
+            p.text = p.text.replace('[-RT-]',f'{dados_empresa["RT"]}')
             p.alignment = WD_ALIGN_PARAGRAPH.RIGHT
             for run in p.runs:
                 run.font.name = 'Arial'
                 run.font.size = Pt(12) 
         elif '[-MEMBRO 1-]' in p.text:
-            p.text = p.text.replace('[-MEMBRO 1-]',f'{dados_empresa['Membro 1']}')
+            p.text = p.text.replace('[-MEMBRO 1-]',f'{dados_empresa["Membro 1"]}')
             p.alignment = WD_ALIGN_PARAGRAPH.RIGHT
             for run in p.runs:
                 run.font.name = 'Arial'
                 run.font.size = Pt(12) 
         elif '[-MEMBRO 2-]' in p.text:
-            p.text = p.text.replace('[-MEMBRO 2-]',f'{dados_empresa['Membro 2']}')
+            p.text = p.text.replace('[-MEMBRO 2-]',f'{dados_empresa["Membro 2"]}')
             p.alignment = WD_ALIGN_PARAGRAPH.RIGHT
             for run in p.runs:
                 run.font.name = 'Arial'
                 run.font.size = Pt(12) 
         elif '[-MEMBRO 3-]' in p.text:
-            p.text = p.text.replace('[-MEMBRO 3-]',f'{dados_empresa['Membro 3']}')
+            p.text = p.text.replace('[-MEMBRO 3-]',f'{dados_empresa["Membro 3"]}')
             p.alignment = WD_ALIGN_PARAGRAPH.RIGHT
             for run in p.runs:
                 run.font.name = 'Arial'
                 run.font.size = Pt(12) 
         elif '[-MEMBRO 4-]' in p.text:
-            p.text = p.text.replace('[-MEMBRO 4-]',f'{dados_empresa['Membro 4']}')
+            p.text = p.text.replace('[-MEMBRO 4-]',f'{dados_empresa["Membro 4"]}')
             p.alignment = WD_ALIGN_PARAGRAPH.RIGHT
             for run in p.runs:
                 run.font.name = 'Arial'

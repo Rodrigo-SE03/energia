@@ -5,7 +5,9 @@ import os,shutil
 import f_qualidade.tratar_dados_qualidade,f_qualidade.planilha_qualidade
 import f_eficiencia.tratar_dados_eficiencia,f_eficiencia.planilha_eficiencia
 import f_vazamentos.tratar_dados_vazamentos
+import webbrowser
 
+webbrowser.open('http://127.0.0.1:5000')
 ALLOWED_EXTENSIONS = {'xlsx','zip'}
 UPLOAD_FOLDER = 'arquivos'
 
