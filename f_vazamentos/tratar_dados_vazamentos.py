@@ -29,9 +29,9 @@ def tratar_dados(dados_empresa,form_vazamentos):
 
 #Função para descompactar o arquivo zip
 def unzip(file,folder):
-    os.mkdir(f'{folder}/{file.filename.split('.')[0]}')
+    os.mkdir(f'{folder}/{file.filename.split(".")[0]}')
     with zipfile.ZipFile(file, 'r') as zip_ref:
-        zip_ref.extractall(f'{folder}/{file.filename.split('.')[0]}')
+        zip_ref.extractall(f'{folder}/{file.filename.split(".")[0]}')
     os.remove(f'{folder}/{file.filename}')
 #--------------------------------------------------------------------------------------------------------
 
