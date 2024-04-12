@@ -27,9 +27,9 @@ class FormInfoVazamentos(FlaskForm):
     
     rt = StringField('Responsável Técnico', validators= [DataRequired()],default='Eng. Paulo Takao Okigami')
     e1 = SelectField('Equipe Técnica', validators= [DataRequired()],choices=['Esp. Haroldo Escudelario','Esp. Gidean de Sousa','Estg. Rodrigo Santana'])
-    e2 = SelectField('Equipe Técnica',choices=['','Esp. Haroldo Escudelario','Esp. Gidean de Sousa','Estg. Rodrigo Santana'])
-    e3 = SelectField('Equipe Técnica',choices=['','Esp. Haroldo Escudelario','Esp. Gidean de Sousa','Estg. Rodrigo Santana'])
-    e4 = SelectField('Equipe Técnica',choices=['','Esp. Haroldo Escudelario','Esp. Gidean de Sousa','Estg. Rodrigo Santana'])
+    e2 = SelectField('Equipe Técnica',choices=['','Esp. Haroldo Escudelario','Eng. Ayllon Gustavo','Esp. Gidean de Sousa','Estg. Rodrigo Santana'])
+    e3 = SelectField('Equipe Técnica',choices=['','Esp. Haroldo Escudelario','Eng. Ayllon Gustavo','Esp. Gidean de Sousa','Estg. Rodrigo Santana'])
+    e4 = SelectField('Equipe Técnica',choices=['','Esp. Haroldo Escudelario','Eng. Ayllon Gustavo','Esp. Gidean de Sousa','Estg. Rodrigo Santana'])
 
     setores = StringField('Setores (separar com vírgula)', validators= [DataRequired()])
 

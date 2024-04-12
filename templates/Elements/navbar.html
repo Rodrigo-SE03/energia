@@ -7,18 +7,30 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="{{ url_for('eficiencia') }}">Eficiência Energética</a>
-          </li>
+          </li> -->
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="{{ url_for('vazamentos') }}">Ar Comprimido</a>
           </li>
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="{{ url_for('qualidade') }}">Qualidade de Energia</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link btn btn-danger" onclick="confirmar()">Resetar Valores</a>
+        </li>
         </ul>
       </div>
     </div>
   </nav>
   <hr class="solid">
+
+
+<script>
+  function confirmar(){
+    if (confirm('Tem certeza que deseja resetar todos os valores?')){
+      window.location.href = "{{ url_for('reset') }}";
+    }
+  }
+</script>
 {% endblock %}

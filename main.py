@@ -102,7 +102,7 @@ def qualidade():
     return render_template('qualidade.html',dados_dict = dados_dict,form_salvar=form_salvar,flag_ready=flag_ready)
 #--------------------------------------------------------------------------------------------------------
 
-@app.route('/',methods=['GET','POST'])
+@app.route('/eficiencia',methods=['GET','POST'])
 def eficiencia():
     global nome_arquivo
     global flag_ready
@@ -148,7 +148,7 @@ def eficiencia():
         
     return render_template('eficiencia.html')
 
-@app.route('/vazamentos',methods=['GET','POST'])
+@app.route('/',methods=['GET','POST'])
 def vazamentos():
     global nome_arquivo
     global flag_ready
@@ -209,6 +209,27 @@ def download():
     return send_from_directory(directory=uploads, path=nome)
 #--------------------------------------------------------------------------------------------------------
 
+@app.route("/reset")
+def reset():
+    global dados_empresa
+    dados_empresa = {
+    'Empresa': '',
+    'CNPJ': '',
+    'Endereço': '',
+    'Contato': '',
+    'Departamento': '',
+    'E-mail': '',
+    'Telefone': '',
+    'RT': '',
+    'Membro 1': '',
+    'Membro 2': '',
+    'Membro 3': '',
+    'Membro 4': '',
+    'Setores': '',
+    }
+    
+    flash('Valores resetados',category='alert-success')
+    return app.redirect(url_for('vazamentos'))
 if __name__ == '__main__':
     app.run(debug=True)
 
