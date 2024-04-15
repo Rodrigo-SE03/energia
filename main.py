@@ -26,7 +26,6 @@ dados_empresa = {
     'Membro 2': '',
     'Membro 3': '',
     'Membro 4': '',
-    'Setores': '',
 }
 flag_ready = False
 flag_atividade = ''
@@ -225,7 +224,6 @@ def reset():
     'Membro 2': '',
     'Membro 3': '',
     'Membro 4': '',
-    'Setores': '',
     }
     
     flash('Valores resetados',category='alert-success')

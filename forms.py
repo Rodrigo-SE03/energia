@@ -31,7 +31,7 @@ class FormInfoVazamentos(FlaskForm):
     e3 = SelectField('Equipe Técnica',choices=['','Esp. Haroldo Escudelario','Eng. Ayllon Gustavo','Esp. Gidean de Sousa','Estg. Rodrigo Santana'])
     e4 = SelectField('Equipe Técnica',choices=['','Esp. Haroldo Escudelario','Eng. Ayllon Gustavo','Esp. Gidean de Sousa','Estg. Rodrigo Santana'])
 
-    setores = StringField('Setores (separar com vírgula)', validators= [DataRequired()])
+    # setores = StringField('Setores (separar com vírgula)', validators= [DataRequired()])
 
     add_button = SubmitField('Registrar', validators= [DataRequired()])
 

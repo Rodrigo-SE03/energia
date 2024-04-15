@@ -22,7 +22,7 @@ def tratar_dados(dados_empresa,form_vazamentos):
     dados_empresa['Membro 2'] = form_vazamentos.e2.data
     dados_empresa['Membro 3'] = form_vazamentos.e3.data
     dados_empresa['Membro 4'] = form_vazamentos.e4.data
-    dados_empresa['Setores'] = form_vazamentos.setores.data
+    # dados_empresa['Setores'] = form_vazamentos.setores.data
 
     return dados_empresa
 #--------------------------------------------------------------------------------------------------------
@@ -265,7 +265,7 @@ def relatorio(file,folder,dados_empresa):
                 run.font.size = Pt(12)
         elif '[-TOTAL-]' in p.text:
             p.text = p.text.replace('[-TOTAL-]',str(qtd_total))
-            p.text = p.text.replace('[-SETORES-]',dados_empresa['Setores'])   
+            # p.text = p.text.replace('[-SETORES-]',dados_empresa['Setores'])   
             for run in p.runs:
                 run.font.name = 'Arial'
                 run.font.size = Pt(12)
