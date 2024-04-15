@@ -18,19 +18,7 @@
                 <div class = "col">
                     <div class="form-group">
                         {{ form_vazamentos.cnpj.label(class = 'form-control-label') }}
-
-                        {% if form_vazamentos.cnpj.errors %}
-                            {{ form_vazamentos.cnpj(class = 'form-control is-invalid') }}
-                            <div class = 'invalid-feedback'>
-                                {% for erro in form_vazamentos.fp.errors %}
-                                    {% if erro == 'This field is required.' %}
-                                        {{ 'Use "." ao invés de ","' }}
-                                    {% endif %}
-                                {% endfor %}
-                            </div>
-                        {% else %}
-                            {{ form_vazamentos.cnpj(class = 'form-control') }}
-                        {% endif %}
+                        {{ form_vazamentos.cnpj(class = 'form-control') }}
                     </div>
                 </div>
             </div>
@@ -48,36 +36,14 @@
                 <div class = "col">
                     <div class="form-group">
                         {{ form_vazamentos.contato_nome.label(class = 'form-control-label') }}
-
-                        {% if form_vazamentos.contato_nome.errors %}
-                            {{ form_vazamentos.contato_nome(class = 'form-control is-invalid') }}
-                            <div class = 'invalid-feedback'>
-                                {% for erro in form_vazamentos.contato_nome.errors %}
-                                    {{ erro }}
-                                {% endfor %}
-                            </div>
-                        {% else %}
-                            {{ form_vazamentos.contato_nome(class = 'form-control') }}
-                        {% endif %}
+                        {{ form_vazamentos.contato_nome(class = 'form-control') }}
                     </div>
                 </div>
 
                 <div class = "col">
                     <div class="form-group">
                         {{ form_vazamentos.contato_depto.label(class = 'form-control-label') }}
-
-                        {% if form_vazamentos.contato_depto.errors %}
-                            {{ form_vazamentos.contato_depto(class = 'form-control is-invalid') }}
-                            <div class = 'invalid-feedback'>
-                                {% for erro in form_vazamentos.contato_depto.errors %}
-                                    {% if erro == 'This field is required.' %}
-                                        {{ 'Use "." ao invés de ","' }}
-                                    {% endif %}
-                                {% endfor %}
-                            </div>
-                        {% else %}
-                            {{ form_vazamentos.contato_depto(class = 'form-control') }}
-                        {% endif %}
+                        {{ form_vazamentos.contato_depto(class = 'form-control') }}
                     </div>
                 </div>
 
