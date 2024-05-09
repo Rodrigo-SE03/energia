@@ -3,20 +3,12 @@ from datetime import datetime, date, time
 import os
 import math
 import copy
+from f_eficiencia.fluke import FlukeData
 
 #Função para carregar a planilha pré construída com dados de cargas
 def carregar_dados(file,folder): 
-    df_exante = pd.read_excel(f'{folder}/{file}',sheet_name=0)
-    df_expost = pd.read_excel(f'{folder}/{file}',sheet_name=1)
-    os.remove(f'{os.getcwd()}/{folder}/{file}')
-    dados_dict_ante = {}
-    dados_dict_post = {}
-    for col in df_exante.columns:
-        dados_dict_ante[col] = df_exante[col].to_list()
-    for col in df_expost.columns:
-        dados_dict_post[col] = df_expost[col].to_list()
-    dados_dict = [dados_dict_ante,dados_dict_post]
-    return dados_dict
+    dados_fluke = FlukeData(file=file,folder=folder)
+    return 0
 #--------------------------------------------------------------------------------------------------------
 
 def calculos(dados_dict):

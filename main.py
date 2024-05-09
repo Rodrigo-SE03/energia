@@ -8,7 +8,7 @@ import f_vazamentos.tratar_dados_vazamentos
 import webbrowser, time
 import keyboard
 
-webbrowser.open('http://127.0.0.1:5000')
+# webbrowser.open('http://127.0.0.1:5000')
 # keyboard.press_and_release('ctrl+w')
 ALLOWED_EXTENSIONS = {'xlsx','zip'}
 UPLOAD_FOLDER = 'arquivos'
@@ -128,7 +128,7 @@ def eficiencia():
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             dados_dict = f_eficiencia.tratar_dados_eficiencia.carregar_dados(file = filename,folder=UPLOAD_FOLDER)
-            results_dict = f_eficiencia.tratar_dados_eficiencia.calculos(dados_dict=dados_dict)
+            # results_dict = f_eficiencia.tratar_dados_eficiencia.calculos(dados_dict=dados_dict)
             flag_ready = True
             flash('Dados carregados com sucesso',category='alert-success')
             return app.redirect(url_for('eficiencia'))
