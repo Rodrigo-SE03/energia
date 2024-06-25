@@ -8,7 +8,7 @@ import f_vazamentos.tratar_dados_vazamentos
 import webbrowser, time
 import keyboard
 
-# webbrowser.open('http://127.0.0.1:5000')
+webbrowser.open('http://127.0.0.1:5000')
 # keyboard.press_and_release('ctrl+w')
 ALLOWED_EXTENSIONS = {'xlsx','zip'}
 UPLOAD_FOLDER = 'arquivos'

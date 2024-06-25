@@ -26,10 +26,10 @@ class FormInfoVazamentos(FlaskForm):
     contato_fone = StringField('Número de telefone da pessoa de contato', validators= [DataRequired()])
     
     rt = StringField('Responsável Técnico', validators= [DataRequired()],default='Eng. Paulo Takao Okigami')
-    e1 = SelectField('Equipe Técnica', validators= [DataRequired()],choices=['Esp. Haroldo Escudelario','Eng. Ayllon Gustavo','Esp. Gidean de Sousa','Estg. Rodrigo Santana'])
-    e2 = SelectField('Equipe Técnica',choices=['','Esp. Haroldo Escudelario','Eng. Ayllon Gustavo','Esp. Gidean de Sousa','Estg. Rodrigo Santana'])
-    e3 = SelectField('Equipe Técnica',choices=['','Esp. Haroldo Escudelario','Eng. Ayllon Gustavo','Esp. Gidean de Sousa','Estg. Rodrigo Santana'])
-    e4 = SelectField('Equipe Técnica',choices=['','Esp. Haroldo Escudelario','Eng. Ayllon Gustavo','Esp. Gidean de Sousa','Estg. Rodrigo Santana'])
+    e1 = SelectField('Equipe Técnica', validators= [DataRequired()],choices=['Esp. Haroldo Escudelario','Eng. Paulo Takao Okigami','Eng. Humberto Amancio Alencar Silva'])
+    e2 = SelectField('Equipe Técnica',choices=['','Esp. Haroldo Escudelario','Eng. Paulo Takao Okigami','Eng. Humberto Amancio Alencar Silva'])
+    e3 = SelectField('Equipe Técnica',choices=['','Esp. Haroldo Escudelario','Eng. Paulo Takao Okigami','Eng. Humberto Amancio Alencar Silva'])
+    e4 = SelectField('Equipe Técnica',choices=['','Esp. Haroldo Escudelario','Eng. Paulo Takao Okigami','Eng. Humberto Amancio Alencar Silva'])
 
     # setores = StringField('Setores (separar com vírgula)', validators= [DataRequired()])
 
