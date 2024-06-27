@@ -29,6 +29,7 @@ dados_empresa = {
     'Membro 3': '',
     'Membro 4': '',
 }
+flag_registrado = False
 flag_ready = False
 flag_atividade = ''
 nome_arquivo = ''
@@ -45,7 +46,7 @@ def allowed_file(filename):
 #Exclusão de arquivos após concluir ação
 def limpar_pasta(folder):
     for file in os.listdir(folder):
-        if 'modelo' not in file:
+        if 'modelo' not in file and '.txt' not in file:
             try:
                 os.remove(f'{folder}/{file}')
             except:
@@ -152,18 +153,21 @@ def eficiencia():
 @app.route('/',methods=['GET','POST'])
 def vazamentos():
     global nome_arquivo
-    global flag_ready
     global dados_empresa
     global flag_atividade
-    form_salvar = FormSalvar()
-    form_vazamentos = FormInfoVazamentos()
+    global flag_registrado
+    form_vazamentos = FormInfoVazamentos(data = {'empresa': dados_empresa['Empresa'],'cnpj':dados_empresa['CNPJ'],'endereco':dados_empresa['Endereço'],
+                                                 'contato_nome':dados_empresa['Contato'],'contato_depto':dados_empresa['Departamento'],'contato_email':dados_empresa['E-mail'],
+                                                 'contato_fone':dados_empresa['Telefone'],'e1':dados_empresa['Membro 1'],'e2':dados_empresa['Membro 2']
+                                                 ,'e3':dados_empresa['Membro 3'],'e4':dados_empresa['Membro 4']})
 
     limpar_pasta(folder=os.path.join(app.root_path,UPLOAD_FOLDER))
 
-    if form_vazamentos.validate_on_submit() and 'add_button' in request.form:
-        f_vazamentos.tratar_dados_vazamentos.tratar_dados(dados_empresa=dados_empresa,form_vazamentos=form_vazamentos)
-        print(dados_empresa)
+    if 'reg_button' in request.form:
+        dados_empresa = f_vazamentos.tratar_dados_vazamentos.tratar_dados(dados_empresa=dados_empresa,form_vazamentos=form_vazamentos)
+        flag_registrado = True
         flash(f'Dados de atendimento registrados - {form_vazamentos.empresa.data}',category='alert-success')
+        return app.redirect(url_for('vazamentos'))
 
     #Procedimento para carregar arquivo
     if request.method == 'POST' and 'load_btn' in request.form:     
@@ -182,7 +186,6 @@ def vazamentos():
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             f_vazamentos.tratar_dados_vazamentos.unzip(file=file,folder=os.path.join(app.root_path,UPLOAD_FOLDER))
             f_vazamentos.tratar_dados_vazamentos.relatorio(file=file.filename,folder=os.path.join(app.root_path,UPLOAD_FOLDER),dados_empresa=dados_empresa)
-            flag_ready = True
             nome_arquivo = f'{file.filename.split(".")[0]}/tabelas'
             flash('Dados carregados com sucesso',category='alert-success')
             flag_atividade = 'Vazamentos'
@@ -190,7 +193,8 @@ def vazamentos():
             return app.redirect(url_for("download"))
     #--------------------------------------------------------------------------------------------------------
         
-    return render_template('vazamentos.html',form_vazamentos=form_vazamentos)
+    return render_template('vazamentos.html',form_vazamentos=form_vazamentos,flag_registrado=flag_registrado)
+#--------------------------------------------------------------------------------------------------------
 
 #Download de arquivos
 @app.route('/download')
@@ -213,6 +217,10 @@ def download():
 @app.route("/reset")
 def reset():
     global dados_empresa
+    global flag_registrado
+    global flag_ready
+    flag_ready = False
+    flag_registrado = False
     dados_empresa = {
     'Empresa': '',
     'CNPJ': '',
