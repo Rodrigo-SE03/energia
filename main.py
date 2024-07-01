@@ -8,8 +8,9 @@ import f_vazamentos.tratar_dados_vazamentos
 import webbrowser, time
 import keyboard
 
-webbrowser.open('http://127.0.0.1:5000')
-# keyboard.press_and_release('ctrl+w')
+chrome_path = 'C:/Program Files/Google/Chrome/Application/chrome.exe %s --incognito'
+webbrowser.get(chrome_path).open_new('http://127.0.0.1:5000')
+
 ALLOWED_EXTENSIONS = {'xlsx','zip'}
 UPLOAD_FOLDER = 'arquivos'
 
@@ -162,7 +163,6 @@ def vazamentos():
                                                  ,'e3':dados_empresa['Membro 3'],'e4':dados_empresa['Membro 4']})
 
     limpar_pasta(folder=os.path.join(app.root_path,UPLOAD_FOLDER))
-
     if 'reg_button' in request.form:
         dados_empresa = f_vazamentos.tratar_dados_vazamentos.tratar_dados(dados_empresa=dados_empresa,form_vazamentos=form_vazamentos)
         flag_registrado = True
@@ -170,7 +170,7 @@ def vazamentos():
         return app.redirect(url_for('vazamentos'))
 
     #Procedimento para carregar arquivo
-    if request.method == 'POST' and 'load_btn' in request.form:     
+    if request.method == 'POST' and 'load_btn' in request.form:  
         # check if the post request has the file part
         if 'file' not in request.files:
             flash('Nenhum arquivo selecionado',category='alert-danger')
@@ -182,7 +182,8 @@ def vazamentos():
             flash('Nenhum arquivo selecionado',category='alert-danger')
             return app.redirect(request.url)
         if file and allowed_file(file.filename):
-            filename = secure_filename(file.filename)
+            filename = file.filename
+
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             f_vazamentos.tratar_dados_vazamentos.unzip(file=file,folder=os.path.join(app.root_path,UPLOAD_FOLDER))
             f_vazamentos.tratar_dados_vazamentos.relatorio(file=file.filename,folder=os.path.join(app.root_path,UPLOAD_FOLDER),dados_empresa=dados_empresa)
