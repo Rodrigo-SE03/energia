@@ -1,6 +1,7 @@
-from flask import Flask, render_template, url_for, request, flash, send_from_directory
+from flask import Flask, render_template, url_for, request, flash, send_from_directory, abort
 from forms import FormSalvar,FormInfoVazamentos
 from werkzeug.utils import secure_filename
+from werkzeug.exceptions import BadRequest
 import os,shutil
 import f_qualidade.tratar_dados_qualidade,f_qualidade.planilha_qualidade
 import f_eficiencia.tratar_dados_eficiencia,f_eficiencia.planilha_eficiencia
@@ -239,7 +240,16 @@ def reset():
     
     flash('Valores resetados',category='alert-success')
     return app.redirect(url_for('vazamentos'))
+
+@app.route('/500')
+def error500():
+    abort(500)
+
+@app.errorhandler(500)
+def handle_bad_request(e):
+    return render_template('500.html'), 500
+
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)
 
 
