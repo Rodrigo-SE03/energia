@@ -13,13 +13,19 @@
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="{{ url_for('vazamentos') }}">Ar Comprimido</a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="{{ url_for('qualidade') }}">Qualidade de Energia</a>
-          </li>
+          </li> -->
           <li class="nav-item">
             <a class="nav-link btn btn-danger" onclick="confirmar()">Resetar Valores</a>
-        </li>
+          </li>
         </ul>
+        <span>
+          <a class="nav-link p-1">Feche o Programa por Este Botão --></a>
+        </span>
+        <span>
+          <a class="nav-link btn btn-danger p-2" onclick="sair()">ENCERRAR</a>
+        </span>
       </div>
     </div>
   </nav>
@@ -30,6 +36,11 @@
   function confirmar(){
     if (confirm('Tem certeza que deseja resetar todos os valores?')){
       window.location.href = "{{ url_for('reset') }}";
+    }
+  }
+  function sair(){
+    if (confirm('Tem certeza que deseja encerrar o programa?')){
+      window.location.href = "{{ url_for('sair') }}";
     }
   }
 </script>

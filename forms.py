@@ -26,7 +26,7 @@ class FormInfoVazamentos(FlaskForm):
 
     empresa = StringField('Nome da empresa', validators= [DataRequired()])
     cnpj = StringField('CNPJ da empresa', validators= [DataRequired()])
-    endereco = StringField('Endereço da empresa (Logradouro; Bairro; Cidade - Estado)', validators= [DataRequired()])
+    endereco = StringField('Endereço da empresa (Logradouro; Bairro; Cidade - Estado)', validators= [DataRequired(),Regexp(r"^[:,.A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ'\s0-9 °ºª\-]+[;][:.,A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ'\s0-9 °ºª\-]+[;][:,.A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ'\s0-9 °ºª\-]+$",message='Siga o formato de exemplo')])
     contato_nome = StringField('Nome da pessoa de contato na empresa', validators= [DataRequired()])
     contato_depto = StringField('Departamento da pessoa de contato', validators= [DataRequired()])
     contato_email = StringField('Email da pessoa de contato', validators= [DataRequired()])

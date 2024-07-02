@@ -5,7 +5,16 @@
 <div class = 'border p-5'>
     <form method="POST">
         {{ form_vazamentos.csrf_token }}
-        <legend>Ar Comprimido</legend>
+        <div class = "row mt-4">
+            <div class = "col">
+                <legend>Ar Comprimido</legend>
+            </div>
+            <div class = "col-md-1 ms-auto">
+                <button type="button" class="btn btn-primary-outline" data-bs-toggle="modal" data-bs-target="#vazamentos" style="border-color:#212529">
+                    <img src="https://img.icons8.com/?size=100&id=83244&format=png&color=000000" class="img" style="width:40px;height:40px;filter:invert(1)">
+                </button>
+            </div>
+        </div>
         <fieldset>
             <div class = "row mt-4">
                 <div class = "col">
@@ -26,7 +35,20 @@
                 <div class = "col">
                     <div class="form-group">
                         {{ form_vazamentos.endereco.label(class = 'form-control-label') }}
-                        {{ form_vazamentos.endereco(class = 'form-control') }}
+
+                            {% if form_vazamentos.endereco.errors %}
+                                {{ form_vazamentos.endereco(class = 'form-control is-invalid') }}
+                                <div class = 'invalid-feedback'>
+                                    {% for erro in form_vazamentos.endereco.errors %}
+                                        {{ erro }}
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form_vazamentos.endereco(class = 'form-control') }}
+                            {% endif %}
+
+                        
+                        
                     </div>
                 </div>
             </div>

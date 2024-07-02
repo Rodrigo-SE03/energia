@@ -1,0 +1,22 @@
+{% block body %}
+<!-- Help - Adicionar Cargas -->
+<div class="modal fade" id="vazamentos" tabindex="-1" aria-labelledby="vazamentoslabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="vazamentoslabel">Ar Comprimido</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            Para esse método é necessário primeiro preencher os dados do atendimento. O campo do endereço deve ser preenchido da mesma
+            forma que mostrado no exemplo (Logradouro; Bairro; Cidade - Estado). Caso o endereço esteja nesse formato e ainda haja acusação
+            de erro, tente reescrever removendo o máximo de carcteres especiais possível. Após registrados os dados, será possível carregar
+            o arquivo .zip que contém os registros dos pontos de fuga identificados.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

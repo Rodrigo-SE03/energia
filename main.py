@@ -1,7 +1,6 @@
 from flask import Flask, render_template, url_for, request, flash, send_from_directory, abort
 from forms import FormSalvar,FormInfoVazamentos
 from werkzeug.utils import secure_filename
-from werkzeug.exceptions import BadRequest
 import os,shutil
 import f_qualidade.tratar_dados_qualidade,f_qualidade.planilha_qualidade
 import f_eficiencia.tratar_dados_eficiencia,f_eficiencia.planilha_eficiencia
@@ -9,12 +8,13 @@ import f_vazamentos.tratar_dados_vazamentos
 import webbrowser, time
 import keyboard
 
+
+time.sleep(0.5)
 chrome_path = 'C:/Program Files/Google/Chrome/Application/chrome.exe %s --incognito'
 webbrowser.get(chrome_path).open_new('http://127.0.0.1:5000')
-
 ALLOWED_EXTENSIONS = {'xlsx','zip'}
 UPLOAD_FOLDER = 'arquivos'
-
+print('hi')
 dados_dict = {'Tabela de dados':['Vazio']}
 results_dict = {}
 dados_empresa = {
@@ -164,7 +164,7 @@ def vazamentos():
                                                  ,'e3':dados_empresa['Membro 3'],'e4':dados_empresa['Membro 4']})
 
     limpar_pasta(folder=os.path.join(app.root_path,UPLOAD_FOLDER))
-    if 'reg_button' in request.form:
+    if 'reg_button' in request.form and form_vazamentos.validate_on_submit():
         dados_empresa = f_vazamentos.tratar_dados_vazamentos.tratar_dados(dados_empresa=dados_empresa,form_vazamentos=form_vazamentos)
         flag_registrado = True
         flash(f'Dados de atendimento registrados - {form_vazamentos.empresa.data}',category='alert-success')
@@ -245,6 +245,12 @@ def reset():
 def error500():
     abort(500)
 
+@app.route('/sair')
+def sair():
+    keyboard.send('ctrl+w')
+    os.system('taskkill -im "Programa EE.exe" /f')
+    return 0
+    
 @app.errorhandler(500)
 def handle_bad_request(e):
     return render_template('500.html'), 500
