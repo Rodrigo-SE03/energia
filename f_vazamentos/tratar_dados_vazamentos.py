@@ -70,9 +70,7 @@ def relatorio(file,folder,dados_empresa):
             os.remove(f'{folder}/{file}')
 
     df = pd.read_excel(f'{folder}/Vazamentos.xlsx',index_col=False)
-    print(df)
     df = df.sort_values(by='Foto',ascending=True).reset_index(drop=True)
-    print(df)
     document = doc
     qtd_total = 0
     qtd_pequeno = 0
